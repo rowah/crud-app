@@ -1,10 +1,11 @@
-const { request } = require("express");
+require("dotenv").config();
+// const { request } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const PORT = 3000;
+const routes = require("./routes/routes");
 
-require("dotenv").config();
+const PORT = 3000;
 
 const mongoString = process.env.DATABASE_URL;
 
@@ -22,7 +23,8 @@ database.once("connected", () => {
 const app = express();
 //a code snippet that allows us to accept the data in JSON format.
 app.use(express.json());
+app.use("/api", routes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`We are live on port ${PORT}`);
 });

@@ -3,8 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
-const routes = require("./routes/routes");
-
 const PORT = 3000;
 
 const mongoString = process.env.DATABASE_URL;
@@ -21,8 +19,11 @@ database.once("connected", () => {
 });
 
 const app = express();
+
 //a code snippet that allows us to accept the data in JSON format.
 app.use(express.json());
+
+const routes = require("./routes/routes");
 app.use("/api", routes);
 
 app.listen(PORT, () => {

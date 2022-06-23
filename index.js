@@ -16,11 +16,10 @@ database.once("connected", () => {
 });
 
 const app = express();
+app.use(express.json());
 
 const routes = require("./routes/routes");
 app.use("/api", routes);
-
-app.use(express.json());
 
 app.listen(PORT, () => {
   console.log(`Server is live on ${PORT}. Check it out!`);

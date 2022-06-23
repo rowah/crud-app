@@ -5,14 +5,14 @@ module.exports = router;
 const Model = require("../model/model");
 
 //Post Method
-router.post("/post", (req, res) => {
+router.post("/post", async (req, res) => {
   //res.send("Post API");
   const data = new Model({
     name: req.body.name,
     age: req.body.age,
   });
   try {
-    const dataToSave = data.save();
+    const dataToSave = await data.save();
     res.status(200).json(dataToSave);
   } catch (error) {
     res.status(400).json({ message: error.message });
